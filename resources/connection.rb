@@ -21,9 +21,11 @@ actions :setup, :teardown, :start, :restart, :stop
 default_action :setup
 
 attribute :db_alias, :kind_of => String, :name_attribute => true
-attribute :db_host, :kind_of => String, :required => true
-attribute :db_port, :kind_of => String, :required => true
-attribute :db_name, :kind_of => String, :required => true
+attribute :db_host, :kind_of => String, :required => false
+attribute :db_port, :kind_of => String, :required => false
+attribute :db_name, :kind_of => String, :required => false
+
+attribute :databases, :kind_of => Hash, :default => { }
 
 attribute :userlist, :kind_of => Hash, :required => true
 
@@ -35,6 +37,9 @@ attribute :group, :kind_of => String, :default => 'pgbouncer'
 attribute :log_dir, :kind_of => String, :default => '/var/log/pgbouncer'
 attribute :socket_dir, :kind_of => String, :default => '/etc/pgbouncer/db_sockets'
 attribute :pid_dir, :kind_of => String, :default => '/var/run/pgbouncer'
+
+attribute :admin_users, :kind_of => Array, :default => ['pgbouncer_admin']
+attribute :stats_users, :kind_of => Array, :default => ['pgbouncer_monitor']
 
 attribute :pool_mode, :kind_of => String, :default => 'transaction'
 attribute :max_client_conn, :kind_of => Integer, :default => 60
